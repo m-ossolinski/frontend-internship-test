@@ -38,11 +38,15 @@ function formValidation() {
         const email = document.querySelector(DOMelements.emailInput).value;
         const password = document.querySelector(DOMelements.passwordForm).value;
         const checkbox = document.querySelector(DOMelements.checkbox);
+        const delay = 3000;
 
         const validator = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
         if (email.match(validator) && password.length > 5 && checkbox.checked) {
-            console.log('Validation passed');
+            setTimeout(() => {
+                hideModal();
+                displayThankYou();
+            }, delay);
         } else if(!email.match(validator)) {
             alert('Your e-mail should look like jonn@doe.com');
         } else if(password.length > 5 == false) {
@@ -55,4 +59,15 @@ function formValidation() {
 
 formValidation();
 
+/* display 'Thank you!' function */
+function displayThankYou() {
+    document.querySelector(DOMelements.clickMe).style.display = 'none';
+    document.querySelector(DOMelements.showThankYou).style.display = 'flex';
+};
 
+
+/* also back to 'Click me' insead of 'Thank you!' */
+document.querySelector(DOMelements.showThankYou).addEventListener('click', function () {
+    document.querySelector(DOMelements.clickMe).style.display = 'flex';
+    document.querySelector(DOMelements.showThankYou).style.display = 'none';
+});
