@@ -46,6 +46,7 @@ function formValidation() {
             setTimeout(() => {
                 hideModal();
                 displayThankYou();
+                clearInputs();
             }, delay);
         } else if(!email.match(validator)) {
             alert('Your e-mail should look like jonn@doe.com');
@@ -66,8 +67,17 @@ function displayThankYou() {
 };
 
 
+
 /* also back to 'Click me' insead of 'Thank you!' */
 document.querySelector(DOMelements.showThankYou).addEventListener('click', function () {
     document.querySelector(DOMelements.clickMe).style.display = 'flex';
     document.querySelector(DOMelements.showThankYou).style.display = 'none';
 });
+
+
+/* clear inputs function */
+function clearInputs() {
+    document.querySelector(DOMelements.emailInput).value = '';
+    document.querySelector(DOMelements.passwordInput).value = '';
+    document.querySelector(DOMelements.checkbox).checked = false;
+}
